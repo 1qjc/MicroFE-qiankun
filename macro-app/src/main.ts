@@ -39,10 +39,10 @@ const { onGlobalStateChange, setGlobalState } = initGlobalState({
   count: useCounterStore().count
 })
 
-const callback = (value: Object, prev: Object) => {
+const callback = (value: { count?: number }, prev: Object) => {
   console.log('[onGlobalStateChange - master]:', value, prev)
   const { count } = storeToRefs(useCounterStore())
-  count.value = value.count
+  count.value = value.count!
 }
 
 onGlobalStateChange(callback)
